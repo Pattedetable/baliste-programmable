@@ -1,4 +1,4 @@
-# Onde sonore stationnaire
+# Baliste programmable
 
 ![screenshot](https://raw.githubusercontent.com/Pattedetable/baliste-programmable/master/screenshot.png)
 
