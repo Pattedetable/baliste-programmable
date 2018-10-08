@@ -15,6 +15,28 @@ Si vous utilisez Linux, Python sera généralement déjà installé.  Si ce n'es
 
 Arduino IDE est peut-être disponible dans les dépôts de votre distribution Linux.  Sinon, il est aussi disponible sur le [site web d'Arduino](https://www.arduino.cc/en/Main/Software), que ce soit pour Linux, MacOS ou Windows.
 
+Vous aurez aussi besoin des modules Python suivants :
+
+  * PyQt5
+
+Si vous utilisez Linux, il est fort probable qu'ils se trouvent dans les dépôts logiciels de votre distribution.
+
+Pour tous les systèmes d'exploitation supportés, à partir de la version 3.4, Python inclus de plus `pip`, un gestionnaire de paquet qui permet d'installer des modules pour Python.  Pour vérifer la version de Python installée sur votre système, ouvrez un terminal (Linux, MacOS) ou une invite de commande (Windows) et tappez :
+
+```python --version```
+
+Si le numéro de version affiché à l'écran commence par 2, dans tout ce qui suit, utilisez `python3` au lieu de `python`, et `pip3` au lieu de `pip`.
+
+Vous pouvez vous servir de `pip` pour installer les divers modules nécessaires.  Par exemple, pour installer PyQt5, entrez dans un terminal (ou invite de commande) :
+
+```pip install PyQt5```
+
+Une fois ces modules installés, dans le terminal sous Linux et MacOS ou l'invite de commande sous Windows, entrez :
+
+```python baliste.py```
+
+Sous Windows, vous pouvez aussi double-cliquer sur le fichier ```baliste.py```.
+
 ### License
 
 Le programme est distribué sous la licence GNU GPLv3.  Pour le texte complet, référez-vous au fichier `LICENSE`.
