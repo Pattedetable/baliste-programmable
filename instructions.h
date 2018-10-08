@@ -1,0 +1,3 @@
+void instructions(Baliste baliste)
+{
+}
