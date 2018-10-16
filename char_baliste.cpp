@@ -21,7 +21,7 @@
 //
 // Auteur-e-s suivant-e-s :
 //
-// Dernière modification : 6 octobre 2018
+// Dernière modification : 16 octobre 2018
 //
 /*****************************************************************************/
 
@@ -196,10 +196,10 @@ void Baliste::avancer(int pourcentVoltage)
 void Baliste::avancerPendant(long int temps, int pourcentVoltage)
 {
 	// Avancer pendant un certain temps (en millisecondes)
-  accelerer(1, pourcentVoltage);
+	accelerer(1, pourcentVoltage);
 	avancer(pourcentVoltage);
 	attendrePendant(temps - 1000);
-  decelerer(1, pourcentVoltage);
+	decelerer(1, pourcentVoltage);
 	arreter();
 }
 
@@ -220,10 +220,10 @@ void Baliste::reculer(int pourcentVoltage)
 void Baliste::reculerPendant(long int temps, int pourcentVoltage)
 {
 	// Reculer pendant un certain temps (en millisecondes)
-  accelerer(-1, pourcentVoltage);
+	accelerer(-1, pourcentVoltage);
 	reculer(pourcentVoltage);
 	attendrePendant(temps - 1000);
-  decelerer(-1, pourcentVoltage);
+	decelerer(-1, pourcentVoltage);
 	arreter();
 }
 
@@ -231,46 +231,46 @@ void Baliste::reculerPendant(long int temps, int pourcentVoltage)
 void Baliste::accelerer(int sens, int pourcentVoltage)
 {
 	// Accélérer de façon graduelle sur une seconde
-	  int nb = 5;
-    if (sens == 1)
-    {
-      for (int i = 1; i <= nb; i++)
-      {
-        avancer(pourcentVoltage*i/nb); 
-        attendrePendant(100);
-      }
-    }
-    else
-    {
-      for (int i = 1; i <= nb; i++)
-      {
-        reculer(pourcentVoltage*i/nb); 
-        attendrePendant(100);
-        }
-    }
+	int nb = 5;
+	if (sens == 1)
+	{
+	  for (int i = 1; i <= nb; i++)
+	  {
+	    avancer(pourcentVoltage*i/nb); 
+	    attendrePendant(100);
+	  }
+	}
+	else
+	{
+	  for (int i = 1; i <= nb; i++)
+	  {
+	    reculer(pourcentVoltage*i/nb); 
+	    attendrePendant(100);
+	  }
+	}
 }
 
 
 void Baliste::decelerer(int sens, int pourcentVoltage)
 {
-  // Décélerer de façon graduelle sur une seconde
-    int nb = 5;
-    if (sens == 1)
-    {
-      for (int i = 1; i <= nb; i++)
-      {
-        avancer(pourcentVoltage*(1 - i/nb));
-        attendrePendant(100);
-      }
-    }
-    else
-    {
-      for (int i = 1; i <= nb; i++)
-      {
-        reculer(pourcentVoltage - pourcentVoltage*i/nb);
-        attendrePendant(100);
-        }
-    }
+	// Décélerer de façon graduelle sur une seconde
+	int nb = 5;
+	if (sens == 1)
+	{
+	  for (int i = 1; i <= nb; i++)
+	  {
+	    avancer(pourcentVoltage*(1 - i/nb));
+	    attendrePendant(100);
+	  }
+	}
+	else
+	{
+	  for (int i = 1; i <= nb; i++)
+	  {
+	    reculer(pourcentVoltage - pourcentVoltage*i/nb);
+	    attendrePendant(100);
+	  }
+	}
 }
 
 /*****************************************************************************/
@@ -288,11 +288,11 @@ void Baliste::arreterTourelle()
 void Baliste::tourelleHoraire(int pourcentVoltage)
 {
 	// Faire tourner la tourelle dans le sens horaire
-  int voltage = conversionPourcent(pourcentVoltage);
-  if(voltage == -1)
-  {
-    return;
-  }
+	int voltage = conversionPourcent(pourcentVoltage);
+	if(voltage == -1)
+	{
+	  return;
+	}
 	digitalWrite(M2, LOW);
 	analogWrite(E2, voltage);
 	sensRotation = 1;
@@ -314,11 +314,11 @@ void Baliste::tourelleHorairePendant(long int temps, int pourcentVoltage)
 void Baliste::tourelleAntihoraire(int pourcentVoltage)
 {
 	// Faire tourner la tourelle dans le sens antihoraire
-  int voltage = conversionPourcent(pourcentVoltage);
-  if(voltage == -1)
-  {
-    return;
-  }
+	int voltage = conversionPourcent(pourcentVoltage);
+	if(voltage == -1)
+	{
+	  return;
+	}
 	digitalWrite(M2, HIGH);
 	analogWrite(E2, voltage);
 	sensRotation = -1;
@@ -339,23 +339,23 @@ void Baliste::tourelleAntihorairePendant(long int temps, int pourcentVoltage)
 
 void Baliste::arretUrgence()
 {
-  // Arrêter le mouvement de la tourelle si elle vient appuyer sur le bouton rouge
-  arreterTourelle();
-  delay(2000);
-  if (getAngle() >= 0)
-  {
-    tourelleAntihoraire(50);
-    delay(getAngle()*2);
-    arreterTourelle();
-  }
-  else
-  {
-    tourelleHoraire(50);
-    delay(-getAngle()*2-2000);
-    arreterTourelle();
-  }
-  angle = 0;
-  exit(0);
+	// Arrêter le mouvement de la tourelle si elle tourne trop loin
+	arreterTourelle();
+	delay(2000);
+	if (getAngle() >= 0)
+	{
+	  tourelleAntihoraire(50);
+	  delay(getAngle()*2);
+	  arreterTourelle();
+	}
+	else
+	{
+	  tourelleHoraire(50);
+	  delay(-getAngle()*2-2000);
+	  arreterTourelle();
+	}
+	angle = 0;
+	exit(0);
 }
 
 /*
@@ -371,47 +371,47 @@ void Baliste::arretUrgenceGauche()
 
 void Baliste::tourelleAccelerer(int sens, int pourcentVoltage)
 {
-  // Accélérer de façon graduelle sur une demi-seconde
-    int nb = 5;
-    if (sens == 1)
-    {
-      for (int i = 1; i <= nb; i++)
-      {
-        tourelleHoraire(pourcentVoltage*i/nb); 
-        attendrePendant(100);
-      }
-    }
-    else
-    {
-      for (int i = 1; i <= nb; i++)
-      {
-        tourelleAntihoraire(pourcentVoltage*i/nb); 
-        attendrePendant(100);
-        }
-    }
+	// Accélérer de façon graduelle sur une demi-seconde
+	int nb = 5;
+	if (sens == 1)
+	{
+	  for (int i = 1; i <= nb; i++)
+	  {
+	    tourelleHoraire(pourcentVoltage*i/nb); 
+	    attendrePendant(100);
+	  }
+	}
+	else
+	{
+	  for (int i = 1; i <= nb; i++)
+	  {
+	    tourelleAntihoraire(pourcentVoltage*i/nb); 
+	    attendrePendant(100);
+	  }
+	}
 }
 
 
 void Baliste::tourelleDecelerer(int sens, int pourcentVoltage)
 {
-  // Décélerer de façon graduelle sur une demi-seconde
-    int nb = 5;
-    if (sens == 1)
-    {
-      for (int i = 1; i <= nb; i++)
-      {
-        tourelleHoraire(pourcentVoltage*(1 - i/nb));
-        attendrePendant(100);
-      }
-    }
-    else
-    {
-      for (int i = 1; i <= nb; i++)
-      {
-        tourelleAntihoraire(pourcentVoltage - pourcentVoltage*i/nb);
-        attendrePendant(100);
-        }
-    }
+	// Décélerer de façon graduelle sur une demi-seconde
+	int nb = 5;
+	if (sens == 1)
+	{
+	  for (int i = 1; i <= nb; i++)
+	  {
+	    tourelleHoraire(pourcentVoltage*(1 - i/nb));
+	    attendrePendant(100);
+	  }
+	}
+	else
+	{
+	  for (int i = 1; i <= nb; i++)
+	  {
+	    tourelleAntihoraire(pourcentVoltage - pourcentVoltage*i/nb);
+	    attendrePendant(100);
+	  }
+	}
 }
 
 
@@ -451,20 +451,20 @@ void Baliste::arreterBaliste()
 
 void Baliste::tournerBaliste()
 {
-  // Faire tourner la baliste
-  //  int voltage = 255*pourcentMax;
-  int voltage = 213;
-  digitalWrite(M3, LOW);
-  digitalWrite(M4, LOW);
-  analogWrite(E3, voltage);
-  analogWrite(E4, voltage);
+	// Faire tirer à volonté la baliste
+	//  int voltage = 255*pourcentMax;
+	int voltage = 213;
+	digitalWrite(M3, LOW);
+	digitalWrite(M4, LOW);
+	analogWrite(E3, voltage);
+	analogWrite(E4, voltage);
 }
 
 
 void Baliste::tirerBaliste()
 {
 	// Faire un tir avec la baliste
-  tournerBaliste();
+	tournerBaliste();
 	attendrePendant(5000); // 2 tirs 5 volts!
 	arreterBaliste();
 }
