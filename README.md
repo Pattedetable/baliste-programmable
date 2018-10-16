@@ -4,6 +4,8 @@
 
 Le fichier utilisé pour démarrer le programme est ```baliste.py```.
 
+Glissez et déposez les commandes à partir de la banque jusque dans la liste.  Remplissez ensuites les champs nécessaires, comme le pourcentage de puissance du moteur à utiliser et/ou le temps pendant lequel exécuter l'instruction.  Utilisez les boutons plus bas pour supprimer des instructions et pour envoyer la liste à la machine connectée.
+
 ## Utilisation
 
 Afin d'utiliser ce programme, vous aurez besoin des logiciels suivants :
