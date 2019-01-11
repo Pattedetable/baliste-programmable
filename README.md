@@ -2,7 +2,7 @@
 
 ![screenshot](https://raw.githubusercontent.com/Pattedetable/baliste-programmable/master/screenshot.png)
 
-Le fichier utilisé pour démarrer le programme est ```baliste.py```.
+Le fichier utilisé pour démarrer le programme est ```baliste.py```.  Le dossier du programme doit s'appeler **Baliste**.
 
 Glissez et déposez les commandes à partir de la banque jusque dans la liste.  Remplissez ensuites les champs nécessaires, comme le pourcentage de puissance du moteur à utiliser et/ou le temps pendant lequel exécuter l'instruction.  Utilisez les boutons plus bas pour supprimer des instructions et pour envoyer la liste à la machine connectée.
 
@@ -11,11 +11,11 @@ Glissez et déposez les commandes à partir de la banque jusque dans la liste.  
 Afin d'utiliser ce programme, vous aurez besoin des logiciels suivants :
 
   * Python 3
-  * Arduino IDE
+  * arduino-cli
 
 Si vous utilisez Linux, Python sera généralement déjà installé.  Si ce n'est pas déjà fait, vous pouvez installer Python 3 à partir des dépôts de logiciels de votre distribution.  Que vous utilisiez Linux, MacOS ou Windows, vous pouvez aussi installer Python à partir du [site officiel](https://www.python.org/).  Sélectionnez ensuite le paquet correspondant à votre système d'exploitation.
 
-Arduino IDE est peut-être disponible dans les dépôts de votre distribution Linux.  Sinon, il est aussi disponible sur le [site web d'Arduino](https://www.arduino.cc/en/Main/Software), que ce soit pour Linux, MacOS ou Windows.
+arduino-cli est peut-être disponible dans les dépôts de votre distribution Linux.  Sinon, il est aussi disponible sur le répertoire Github[d'Arduino](https://github.com/arduino/arduino-cli), que ce soit pour Linux, MacOS ou Windows. Téléchargez la dernière version et décompressez l'archive dans le même dossier que le programme de la baliste.
 
 Vous aurez aussi besoin des modules Python suivants :
 
@@ -45,3 +45,5 @@ Le programme est distribué sous la licence GNU GPLv3.  Pour le texte complet, r
 La version courte de cette licence est que vous êtes libre d'utiliser ce logiciel, d'en modifier le code source, ainsi que de le redistribuer, que ce soit sous sa version originale ou modifiée.  Cependant, vous devez donner ces mêmes droits aux personnes qui utiliseront votre logiciel redistribué.
 
 Le code source est disponible sur [GitHub](https://github.com/Pattedetable/baliste-programmable).
+
+Ce logiciel utilise des librairies de Qt sous la licence LGPLv3, de Python et d'arduino-cli.
