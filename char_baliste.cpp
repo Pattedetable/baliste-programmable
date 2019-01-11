@@ -1,5 +1,5 @@
 //
-// Copyright 2018 Manuel Barrette
+// Copyright 2018-2019 Manuel Barrette
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -36,30 +36,30 @@ Baliste::Baliste()
 	voltageBatterie = 6; // À modifier selon la batterie
 	voltageMoteurRouesTourelle = 4; // À modifier selon le moteur
 	voltageMoteurBaliste = 4; // À modifier selon le moteur
-	
+
 	pourcentMax = voltageMoteurRouesTourelle/voltageBatterie;
-	
+
 	// Numéro des pins connectées aux moteurs (servent dans tout le programme)
-	
+
 	// Le moteur 1 est utilisé pour les roues.
 	M1 = 4;
 	E1 = 5;
-	
+
 	// Le moteur 2 est utilisé pour la tourelle.
 	M2 = 2;
 	E2 = 3;
-	
+
 	// Les moteurs 3 et 4 sont utilisés pour la baliste.
 	M3 = 12;
 	E3 = 10;
 	M4 = 13;
 	E4 = 11;
-	
+
 	// Les boutons sont connectés aux pins 6 à 8
 	boutonRouge = 7;
 	boutonNoir1 = 6;
 	boutonNoir2 = 8;
-	
+
 	limite = 3*50000*40/1000;
 	angle = 0;
 
@@ -236,7 +236,7 @@ void Baliste::accelerer(int sens, int pourcentVoltage)
 	{
 	  for (int i = 1; i <= nb; i++)
 	  {
-	    avancer(pourcentVoltage*i/nb); 
+	    avancer(pourcentVoltage*i/nb);
 	    attendrePendant(100);
 	  }
 	}
@@ -244,7 +244,7 @@ void Baliste::accelerer(int sens, int pourcentVoltage)
 	{
 	  for (int i = 1; i <= nb; i++)
 	  {
-	    reculer(pourcentVoltage*i/nb); 
+	    reculer(pourcentVoltage*i/nb);
 	    attendrePendant(100);
 	  }
 	}
@@ -377,7 +377,7 @@ void Baliste::tourelleAccelerer(int sens, int pourcentVoltage)
 	{
 	  for (int i = 1; i <= nb; i++)
 	  {
-	    tourelleHoraire(pourcentVoltage*i/nb); 
+	    tourelleHoraire(pourcentVoltage*i/nb);
 	    attendrePendant(100);
 	  }
 	}
@@ -385,7 +385,7 @@ void Baliste::tourelleAccelerer(int sens, int pourcentVoltage)
 	{
 	  for (int i = 1; i <= nb; i++)
 	  {
-	    tourelleAntihoraire(pourcentVoltage*i/nb); 
+	    tourelleAntihoraire(pourcentVoltage*i/nb);
 	    attendrePendant(100);
 	  }
 	}
@@ -468,5 +468,3 @@ void Baliste::tirerBaliste()
 	attendrePendant(5000); // 2 tirs 5 volts!
 	arreterBaliste();
 }
-
-

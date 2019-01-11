@@ -1,5 +1,5 @@
 //
-// Copyright 2018 Manuel Barrette
+// Copyright 2018-2019 Manuel Barrette
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -26,10 +26,10 @@ void loop() {
 	Baliste baliste;
 
 	int bouton = 0;
-	
+
 	// Choix de la séquence avec les boutons
 	// Connecter un côté du bouton au ground et l'autre à une pin
-	
+
 	  while (bouton == 0)
 	  {
 	  	if (digitalRead(baliste.getBoutonNoir1()) == LOW) // Selon documentation, LOW = enfoncé, HIGH = pas enfoncé
@@ -45,12 +45,12 @@ void loop() {
 	      bouton = 3;
 	    }
 	  }
-	
+
 	// Écrire les instructions plus bas
-	
-	
+
+
 	// Séquence pour le défi
-	
+
 	if (bouton == 1)
 	{
 	baliste.attendrePendant(2000); // Délai de 2 secondes
@@ -66,10 +66,10 @@ void loop() {
 	baliste.tourelleAntihorairePendant(7000, 40);
 	baliste.reculerPendant(13000, 80);
 	}
-	
-	
+
+
 	// Séquence de Gatling
-	
+
 	if (bouton == 2)
 	{
 	//baliste.attendrePendant(2000); // Délai de 2 secondes
@@ -90,21 +90,21 @@ void loop() {
 	//baliste.arreter();
 	instructions(baliste);
 	}
-	
-	
+
+
 	// Faire tirer la baliste à volonté
-	
+
 	if (bouton == 3)
 	{
 	  baliste.tournerBaliste();
 	  while (digitalRead(baliste.getBoutonNoir2()) == LOW)
 	  {
-	
+
 	  }
 	  baliste.arreterBaliste();
 	}
 	delete &baliste;
-	
+
 	baliste.attendrePendant(1000);
 
 }
@@ -113,6 +113,5 @@ void loop() {
 void setup() {
 	// Code qui ne sera utilisé qu'une seule fois
 
-  
-}
 
+}

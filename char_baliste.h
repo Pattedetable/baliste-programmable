@@ -1,5 +1,5 @@
 //
-// Copyright 2018 Manuel Barrette
+// Copyright 2018-2019 Manuel Barrette
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -38,13 +38,13 @@ class Baliste
 	//
 	// Prototypes de fonctions
 	//
-	
+
 	// Constructeur
 	Baliste();
-	
+
 	// Destructeur
 	~Baliste();
-	
+
 	// Obtenir la valeur actuelle de l'angle de rotation
 	int getAngle() const;
 
@@ -64,66 +64,66 @@ class Baliste
 
 	// Convertir un pourcentage en base 255
 	int conversionPourcent(int pourcentVoltage);
-	
+
 	// Attendre un temps donné en millisecondes
 	void attendrePendant(unsigned long temps);
 
 	// Arrêter les roues
 	void arreter();
-	
+
 	// Faire avancer l'engin
 	void avancer(int pourcentVoltage = 100);
-	
+
 	// Avancer pendant un certain temps (en millisecondes)
 	void avancerPendant(long int temps, int pourcentVoltage = 100);
-	
+
 	// Faire reculer l'engin
 	void reculer(int pourcentVoltage = 100);
-	
+
 	// Reculer pendant un certain temps (en millisecondes)
 	void reculerPendant(long int temps, int pourcentVoltage = 100);
-	
+
 	// Faire augmenter graduellement le voltage des roues
 	void accelerer(int sens, int pourcentVoltage = 100);
-	
+
 	// Faire diminuer graduellement le voltage des roues
 	void decelerer(int sens, int pourcentVoltage = 100);
-	
+
 	// Arrêter le mouvement de la tourelle
 	void arreterTourelle();
-	
+
 	// Faire tourner la tourelle dans le sens horaire
 	void tourelleHoraire(int pourcentVoltage = 100);
-	
+
 	// Faire tourner la tourelle dans le sens horaire pendant un certain temps (en millisecondes)
 	void tourelleHorairePendant(long int temps, int pourcentVoltage = 100);
-	
+
 	// Faire tourner la tourelle dans le sens antihoraire
 	void tourelleAntihoraire(int pourcentVoltage = 100);
-	
+
 	// Faire tourner la tourelle dans le sens antihoraire pendant un certain temps (en millisecondes)
 	void tourelleAntihorairePendant(long int temps, int pourcentVoltage = 100);
-	
+
 	// Arrêter la tourelle si on tourne trop
 	void arretUrgence();
-	
+
 	// Faire augmenter graduellement le voltage de la tourelle
 	void tourelleAccelerer(int sens, int pourcentVoltage = 100);
-	
+
 	// Faire diminuer graduellement le voltage de la tourelle
 	void tourelleDecelerer(int sens, int pourcentVoltage = 100);
-	
+
 	// Arrêter les moteurs de la baliste
 	void arreterBaliste();
-	
+
 	//Faire tourner les moteurs de la baliste
 	void tournerBaliste();
-	
+
 	// Faire un tir avec la baliste
 	void tirerBaliste();
 
 	private:
-	
+
 	int M1, E1, M2, E2, M3, E3, M4, E4;
 	int boutonRouge, boutonNoir1, boutonNoir2;
 	float voltageBatterie, voltageMoteurRouesTourelle, voltageMoteurBaliste, pourcentMax;
