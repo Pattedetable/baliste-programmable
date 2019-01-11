@@ -17,6 +17,7 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 from subprocess import call
+import platform
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -328,9 +329,22 @@ class Ui_MainWindow(object):
         self.progressBar.setValue(50)
 #        call(["arduino", "--upload", "Baliste.ino"])
         processus = QtCore.QProcess()
-        processus.start("arduino --upload Baliste.ino")
-        processus.waitForFinished()
-        code = processus.exitCode()
+#        processus.start("arduino --upload Baliste.ino")
+        systeme_exploitation = platform.system()
+        if systeme_exploitation == 'Windows':
+            processus.start("arduino-cli compile -b arduino:avr:uno ..\Baliste")
+            processus.waitForFinished()
+            processus.start("arduino-cli upload -p COM3 -b arduino:avr:uno -v ..\Baliste")
+            processus.waitForFinished()
+            code = processus.exitCode()
+        elif systeme_exploitation == 'Darwin' or 'Linux':
+            processus.start("arduino-cli compile -b arduino:avr:uno ../Baliste")
+            processus.waitForFinished()
+            processus.start("arduino-cli upload -p /dev/ttyACM0 -b arduino:avr:uno -v ../Baliste")
+            processus.waitForFinished()
+            code = processus.exitCode()
+        else:
+            code = 5
 #        print(code)
         if code == 0:
              print("Envoi terminé avec succès!")
@@ -347,6 +361,9 @@ class Ui_MainWindow(object):
         elif code == 4:
             print("La préférence utilisée n'existe pas")
             self.textBrowser.setText("La préférence utilisé n'existe pas")
+        elif code == 5:
+            print("Système d'exploitation non supporté")
+            self.textBrowser.setText("Système d'exploitation non supporté")
         else:
             print("Erreur inconnue")
             self.textBrowser.setText("Erreur inconnue")
