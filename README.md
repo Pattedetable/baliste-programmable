@@ -2,7 +2,7 @@
 
 ![screenshot](https://raw.githubusercontent.com/Pattedetable/baliste-programmable/master/screenshot.png)
 
-Le fichier utilisé pour démarrer le programme est ```baliste.py```.  Le dossier du programme doit s'appeler **Baliste**.  De plus, lors du premier lancement, vous aurez besoin d'un branchement Internet pour la mise à jour des noyaux Arduino.
+Le fichier utilisé pour démarrer le programme est ```baliste.py```.  Le dossier du programme doit s'appeler **Baliste** et être placé quelque part dans votre répertoire d'utilisateur.  De plus, lors du premier lancement, vous aurez besoin d'un branchement Internet pour la mise à jour des noyaux Arduino.
 
 Glissez et déposez les commandes à partir de la banque jusque dans la liste.  Remplissez ensuites les champs nécessaires, comme le pourcentage de puissance du moteur à utiliser et/ou le temps pendant lequel exécuter l'instruction.  Utilisez les boutons plus bas pour supprimer des instructions et pour envoyer la liste à la machine connectée.
 
