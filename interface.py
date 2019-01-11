@@ -182,6 +182,17 @@ class Ui_MainWindow(object):
         self.pushButton_3.clicked.connect(lambda: self.supprimerLigne())
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
+        print("Initialisation...")
+        self.textBrowser.setText("Initialisation...")
+        processus = QtCore.QProcess()
+        processus.start("arduino-cli core update-index")
+        processus.waitForFinished()
+        processus.start("arduino-cli core install arduino:avr")
+        processus.waitForFinished()
+        print("Prêt!")
+        self.textBrowser.setText("Prêt!")
+
+
         self.dico_commandes = {}
         self.dico_commandes['Arrêter la tourelle'] = 'arreterTourelle'
         self.dico_commandes['Arrêter la baliste'] = 'arreterBaliste'
