@@ -196,13 +196,13 @@ class Ui_MainWindow(object):
 
         self.dico_commandes_pendant = {}
         self.dico_commandes_pendant['Continuer pendant'] = 'attendrePendant'
- 
+
         self.dico_commandes_puissance_pendant = {}
         self.dico_commandes_puissance_pendant['Avancer pendant'] = 'avancerPendant'
         self.dico_commandes_puissance_pendant['Tourner horaire pendant'] = 'tourelleHorairePendant'
         self.dico_commandes_puissance_pendant['Reculer pendant'] = 'reculerPendant'
         self.dico_commandes_puissance_pendant['Tourner antihoraire pendant'] = 'tourelleAntihorairePendant'
- 
+
 
     def supprimerLigne(self):
         self.tableWidget_2.removeRow(self.tableWidget_2.currentRow())
@@ -232,7 +232,7 @@ class Ui_MainWindow(object):
                     commande = item.text()
                 except AttributeError:
                     i += 1
-                    continue 
+                    continue
                 if commande in self.dico_commandes:
                     file_object.write("baliste." + self.dico_commandes[commande] + "();\n")
                 elif commande in self.dico_commandes_puissance:
@@ -246,12 +246,14 @@ class Ui_MainWindow(object):
                     except ValueError:
                         print("Ligne " + str(i+1) + " : Veuillez entrer un pourcentage entre 0 et 100")
                         self.textBrowser.setText("Ligne " + str(i+1) + " : Veuillez entrer un pourcentage entre 0 et 100")
+                        self.disableAll(False)
                         return
                     if 0 <= pourcent <= 100:
                         file_object.write("baliste." + self.dico_commandes_puissance[commande] + "(" + str(pourcent)  + ");\n")
                     else:
                         print("Ligne " + str(i+1) + " : Veuillez entrer un pourcentage entre 0 et 100")
                         self.textBrowser.setText("Ligne " + str(i+1) + " : Veuillez entrer un pourcentage entre 0 et 100")
+                        self.disableAll(False)
                         return
                 elif commande in self.dico_commandes_pendant:
                     try:
@@ -260,16 +262,19 @@ class Ui_MainWindow(object):
                     except AttributeError:
                         print("Ligne " + str(i+1) + " : Veuillez entrer un temps entre 0 et 4 294 967 295 ms")
                         self.textBrowser.setText("Ligne " + str(i+1) + " : Veuillez entrer un temps entre 0 et 4 294 967 295 ms")
+                        self.disableAll(False)
                         return
                     except ValueError:
                         print("Ligne " + str(i+1) + " : Veuillez entrer un temps entre 0 et 4 294 967 295 ms")
                         self.textBrowser.setText("Ligne " + str(i+1) + " : Veuillez entrer un temps entre 0 et 4 294 967 295 ms")
+                        self.disableAll(False)
                         return
                     if 0 <= temps <= 4294967295:
                         file_object.write("baliste." + self.dico_commandes_pendant[commande] + "(" + str(temps)  + ");\n")
                     else:
                         print("Ligne " + str(i+1) + " : Veuillez entrer un temps entre 0 et 4 294 967 295 ms")
                         self.textBrowser.setText("Ligne " + str(i+1) + " : Veuillez entrer un temps entre 0 et 4 294 967 295 ms")
+                        self.disableAll(False)
                         return
                 elif commande in self.dico_commandes_puissance_pendant:
                     try:
@@ -280,12 +285,14 @@ class Ui_MainWindow(object):
                     except ValueError:
                         print("Ligne " + str(i+1) + " : Veuillez entrer un pourcentage entre 0 et 100")
                         self.textBrowser.setText("Ligne " + str(i+1) + " : Veuillez entrer un pourcentage entre 0 et 100")
+                        self.disableAll(False)
                         return
                     if 0 <= pourcent <= 100:
                         flag_pourcent = True
                     else:
                         print("Ligne " + str(i+1) + " : Veuillez entrer un pourcentage entre 0 et 100")
                         self.textBrowser.setText("Ligne " + str(i+1) + " : Veuillez entrer un pourcentage entre 0 et 100")
+                        self.disableAll(False)
                         return
                     try:
                         temps = self.tableWidget_2.item(i,2).text()
@@ -293,22 +300,26 @@ class Ui_MainWindow(object):
                     except AttributeError:
                         print("Ligne " + str(i+1) + " : Veuillez entrer un temps entre 0 et 4 294 967 295 ms")
                         self.textBrowser.setText("Ligne " + str(i+1) + " : Veuillez entrer un temps entre 0 et 4 294 967 295 ms")
+                        self.disableAll(False)
                         return
                     except ValueError:
                         print("Ligne " + str(i+1) + " : Veuillez entrer un temps entre 0 et 4 294 967 295 ms")
                         self.textBrowser.setText("Ligne " + str(i+1) + " : Veuillez entrer un temps entre 0 et 4 294 967 295 ms")
+                        self.disableAll(False)
                         return
                     if 0 <= temps <= 4294967295:
                         flag_temps = True
                     else:
                         print("Ligne " + str(i+1) + " : Veuillez entrer un temps entre 0 et 4 294 967 295 ms")
                         self.textBrowser.setText("Ligne " + str(i+1) + " : Veuillez entrer un temps entre 0 et 4 294 967 295 ms")
+                        self.disableAll(False)
                         return
                     if flag_temps == True and flag_pourcent == True:
                         file_object.write("baliste." + self.dico_commandes_puissance_pendant[commande] + "(" + str(temps)  + ", " + str(pourcent) + ");\n")
                 else:
                     print("Ligne " + str(i+1) + " : Commande invalide")
                     self.textBrowser.setText("Ligne " + str(i+1) + " : Commande invalide")
+                    self.disableAll(False)
                     return
                 i += 1
             file_object.write("}\n")
@@ -325,8 +336,8 @@ class Ui_MainWindow(object):
              print("Envoi terminé avec succès!")
              self.textBrowser.setText("Envoi terminé avec succès!")
         elif code == 1:
-            print("Erreur lors du téléversement, appuyez sur Reset et réessayez.")
-            self.textBrowser.setText("Erreur lors du téléversement, appuyez sur Reset et réessayez.")
+            print("Erreur lors du téléversement, vérifiez que la machine est bien branchée, appuyez sur Reset et réessayez.")
+            self.textBrowser.setText("Erreur lors du téléversement, vérifiez que la machine est bien branchée, appuyez sur Reset et réessayez.")
         elif code == 2:
             print("Croquis non trouvé")
             self.textBrowser.setText("Croquis non trouvé")
@@ -334,7 +345,7 @@ class Ui_MainWindow(object):
             print("Option invalide passée en argument")
             self.textBrowser.setText("Option invalide passée en argument")
         elif code == 4:
-            print("La préférence utilisé n'existe pas")
+            print("La préférence utilisée n'existe pas")
             self.textBrowser.setText("La préférence utilisé n'existe pas")
         else:
             print("Erreur inconnue")
@@ -400,5 +411,3 @@ class Ui_MainWindow(object):
         self.pushButton.setDisabled(boolean)
         self.pushButton_2.setDisabled(boolean)
         self.pushButton_3.setDisabled(boolean)
-
-
