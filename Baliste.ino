@@ -20,6 +20,8 @@
 #include "char_baliste.h"
 #include "instructions.h"
 
+int sens = 1;
+
 void loop() {
 	// Code qui se répète en boucle
 
@@ -68,26 +70,28 @@ void loop() {
 	}
 
 
-	// Séquence de Gatling
+	// Séquence de réajustement
 
 	if (bouton == 2)
 	{
-	//baliste.attendrePendant(2000); // Délai de 2 secondes
-	//baliste.avancer(75);
-	//baliste.attendrePendant(500);
-	//baliste.tourelleHoraire(40);
-	//baliste.tournerBaliste();
-	//baliste.attendrePendant(5000);
-	//baliste.arreterTourelle();
-	//baliste.tourelleAntihoraire(40);
-	//baliste.attendrePendant(10000);
-	//baliste.arreterTourelle();
-	//baliste.tourelleHoraire(40);
-	//baliste.attendrePendant(4500);
-	//baliste.arreterTourelle();
-	//baliste.arreterBaliste();
-	//baliste.attendrePendant(1000);
-	//baliste.arreter();
+//    if (sens == 1)
+//    {
+//      baliste.tourelleHoraire();
+//      baliste.attendrePendant(1000);
+//      sens = -1;
+//    }
+//    else
+//    {
+//      baliste.tourelleAntihoraire();
+//      baliste.attendrePendant(1000);
+//      sens = 1;
+//    }
+//
+//    while (digitalRead(baliste.getBoutonRouge()) == LOW)
+//    {
+//
+//    }
+//    baliste.arreterTourelle();
 	instructions(baliste);
 	}
 
